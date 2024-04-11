@@ -1,10 +1,11 @@
 from setuptools import setup
 
 install_requirements = [
+    "scipy",
     "biopython>=1.78",
     "scikit-learn>=0.21.3",
     "pandas>=0.23.3",
-    "xgboost=1.2.0",
+    "xgboost==1.2.0",
 ]
 
 setup(
@@ -13,8 +14,9 @@ setup(
     author_email = 'thaisratis@gmail.com',
     description = 'Package to predict potential coding of RNA sequences provided in fasta format',
     license = 'GPL3',
+    include_package_data=True,
     version = '1.0.4',
     packages = ['rnamining'],
-    scripts=['bin/annotate'],
-    install_requires=['plyvel']
+    scripts=['bin/rnamining'],
+    install_requires=install_requirements
 )
