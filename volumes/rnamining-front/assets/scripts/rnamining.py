@@ -6,7 +6,9 @@ from counters import arff_creator
 import argparse
 import os
 import pickle
+import sys
 
+local = sys.path[0]
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 
 def process_inputfile(filename, organism_name,output_folder):
@@ -107,7 +109,7 @@ def predict(filename_path, organism_name, prediction_type, output_folder):
 
     try:
         X = process_inputfile(filename_path, organism_name, output_folder)
-        model = pickle.load(open('models/' + 'coding_prediction/' + organism_name + '.pkl', 'rb'))
+        model = pickle.load(open(local + '/models/' + 'coding_prediction/' + organism_name + '.pkl', 'rb'))
         predict = model.predict(X)
         proba = model.predict_proba(X)
         process_outputfile(filename_path, predict, proba, organism_name, prediction_type,output_folder)
